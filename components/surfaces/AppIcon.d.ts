@@ -1,7 +1,7 @@
 import React from 'react';
 
 export type AppIconColor = 'red' | 'blueink' | 'blue' | 'yellow' | 'jade' | 'orange' | 'ink' | string;
-export type AppIconVariant = 'glass' | 'frost' | 'soft' | 'solid' | 'bare';
+export type AppIconVariant = 'glass' | 'solid' | 'bare';
 
 export interface AppIconProps extends React.HTMLAttributes<HTMLSpanElement> {
   /** Brand color name or any CSS color. @default 'blue' */
@@ -11,9 +11,7 @@ export interface AppIconProps extends React.HTMLAttributes<HTMLSpanElement> {
   /**
    * Shape treatment (all theme-aware).
    * `glass` (default) — brand-color glyph on a same-color frosted square (best over color/imagery).
-   * `frost` — white glyph on a saturated translucent frosted color square (solid punch + glass glow).
-   * `soft` — deep brand glyph on an opaque same-color wash square (best on light/white surfaces).
-   * `solid` — white (or dark) glyph on a solid color squircle.
+   * `solid` — white (or dark) glyph on a solid color squircle (max emphasis).
    * `bare` — brand-color glyph only, no container.
    * @default 'glass'
    */

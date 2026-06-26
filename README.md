@@ -108,11 +108,14 @@ Dark theme: set `data-theme="dark"` on `<html>`. Everything reads from CSS custo
 
 ---
 
-## Logo asset — TODO
+## Logo assets
 
-Every logo reference in this system points at a PNG: `assets/ezagent-logo.png` (light, **not yet committed** — it exceeded the sync transfer cap) and `assets/ezagent-logo-dark.png` (dark, **present**). The light mark is used in `guidelines/brand-logo*.html`, `slides/TitleSlide.html`, and both UI kits.
+Both logos are PNG — this system has **no SVG/vector** version:
 
-Preferred fix: drop in **vector** logos (`assets/ezagent-logo.svg` + a dark variant) and repoint the `<img>` references to them — no PNG needed. Until a vector or the light PNG is supplied, those previews show a broken image for the light mark.
+- `assets/ezagent-logo.png` — light mark (838×1008 RGBA), for white / light grounds.
+- `assets/ezagent-logo-dark.png` — dark mark, brightened axis for near-black surfaces.
+
+Referenced from `guidelines/brand-logo*.html`, `slides/TitleSlide.html`, and both UI kits.
 
 ---
 

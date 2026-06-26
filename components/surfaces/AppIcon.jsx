@@ -11,11 +11,10 @@ const EZ_APPICON_CSS = `
 .ez-appicon__glyph svg{width:52%;height:52%;}
 .ez-appicon--bare .ez-appicon__glyph svg{width:74%;height:74%;}
 .ez-appicon--solid .ez-appicon__glyph svg{width:46%;height:46%;}
-.ez-appicon--frost .ez-appicon__glyph svg{width:48%;height:48%;}
 
 /* ============ per-color brand variables (theme-aware) ============
    --ez-brand        : the fill base color
-   --ez-brand-glyph  : the glyph color for brand-colored variants (soft/glass/bare),
+   --ez-brand-glyph  : the glyph color for brand-colored variants (glass/bare),
                        deepened for light hues in LIGHT mode, bright in dark mode */
 .ez-appicon--c-blue    { --ez-brand:var(--blue);    --ez-brand-glyph:var(--blue); }
 .ez-appicon--c-blueink { --ez-brand:var(--blueink); --ez-brand-glyph:var(--blueink); }
@@ -33,22 +32,6 @@ const EZ_APPICON_CSS = `
 .ez-appicon--solid.ez-appicon--sm{border-radius:11px;}
 .ez-appicon--solid.ez-appicon--lg{border-radius:22px;}
 
-/* ---- frost: solid-style frosted glass — saturated translucent color + white glyph + luminous edge ---- */
-.ez-appicon--frost{border-radius:var(--r-icon);color:#fff;
-  background:color-mix(in srgb, var(--ez-brand) 88%, transparent);
-  backdrop-filter:blur(8px) saturate(1.3);-webkit-backdrop-filter:blur(8px) saturate(1.3);
-  box-shadow:inset 0 1px 1px rgba(255,255,255,.55), inset 0 0 0 1px rgba(255,255,255,.22),
-    0 10px 22px -10px color-mix(in srgb, var(--ez-brand) 60%, transparent);}
-.ez-appicon--frost.ez-appicon--sm{border-radius:11px;}
-.ez-appicon--frost.ez-appicon--lg{border-radius:22px;}
-
-/* ---- soft: opaque same-color wash + deep brand glyph (best on light surfaces) ---- */
-.ez-appicon--soft{border-radius:var(--r-icon);color:var(--ez-brand-glyph);
-  background:color-mix(in srgb, var(--ez-brand) 17%, var(--card));
-  box-shadow:0 5px 14px -10px rgba(15,15,15,.45);}
-.ez-appicon--soft.ez-appicon--sm{border-radius:11px;}
-.ez-appicon--soft.ez-appicon--lg{border-radius:22px;}
-
 /* ---- glass: brand glyph on same-color frosted square (best over color/imagery) ---- */
 .ez-appicon--glass{border-radius:13px;color:var(--ez-brand-glyph);
   background:color-mix(in srgb, var(--ez-brand) 15%, transparent);
@@ -60,23 +43,12 @@ const EZ_APPICON_CSS = `
 /* ---- bare: brand glyph only ---- */
 .ez-appicon--bare{background:transparent;color:var(--ez-brand-glyph);}
 
-/* ============ DARK MODE — brand colors brighten, so flip glyph + retune fills ============ */
+/* ============ DARK MODE — brand colors brighten, so flip glyph + retune ============ */
 /* white glyph reads poorly on brightened colors → use a deep ink glyph */
-:root[data-theme="dark"] .ez-appicon--solid,
-:root[data-theme="dark"] .ez-appicon--frost{color:#15131C;}
+:root[data-theme="dark"] .ez-appicon--solid{color:#15131C;}
 /* yellow fill is light in BOTH themes → always a dark glyph */
 .ez-appicon--solid.ez-appicon--ink,
-.ez-appicon--frost.ez-appicon--ink,
-:root[data-theme="dark"] .ez-appicon--solid.ez-appicon--ink,
-:root[data-theme="dark"] .ez-appicon--frost.ez-appicon--ink{color:#2E2400;}
-/* soft: lift the wash a touch on near-black so it stays visible */
-:root[data-theme="dark"] .ez-appicon--soft{
-  background:color-mix(in srgb, var(--ez-brand) 26%, var(--card));
-  box-shadow:0 6px 16px -10px rgba(0,0,0,.7);}
-/* frost: gentler inner highlight on dark */
-:root[data-theme="dark"] .ez-appicon--frost{
-  box-shadow:inset 0 1px 1px rgba(255,255,255,.35), inset 0 0 0 1px rgba(255,255,255,.14),
-    0 10px 22px -10px color-mix(in srgb, var(--ez-brand) 50%, transparent);}
+:root[data-theme="dark"] .ez-appicon--solid.ez-appicon--ink{color:#2E2400;}
 /* glass: edge from light tint instead of white border on dark */
 :root[data-theme="dark"] .ez-appicon--glass{
   box-shadow:inset 0 0 0 1px rgba(244,242,236,.18), 0 6px 16px -9px rgba(0,0,0,.6);}
@@ -94,15 +66,13 @@ function ensureStyle(id, css) {
 }
 
 const NAMED = ['red', 'blueink', 'blue', 'yellow', 'jade', 'orange', 'ink'];
-// fills whose light tint needs a dark glyph in solid/frost (white would wash out)
+// fills whose light tint needs a dark glyph in solid (white would wash out)
 const LIGHT_FILL = ['yellow'];
 
 /**
  * Product/app icon. `variant`:
  *  - 'glass' (default) — brand-color glyph on a same-color frosted square (best over color/imagery)
- *  - 'frost' — white glyph on a saturated, translucent frosted color square (solid punch + glass glow)
- *  - 'soft'  — deep brand glyph on an opaque same-color wash square (best on light/white surfaces)
- *  - 'solid' — white (or dark) glyph on a solid color squircle
+ *  - 'solid' — white (or dark) glyph on a solid color squircle (max emphasis)
  *  - 'bare'  — brand-color glyph only, no container
  * All variants are theme-aware: glyph contrast and fills retune automatically under data-theme="dark".
  */
