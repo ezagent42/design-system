@@ -10,7 +10,7 @@ The design language for **Ezagent** — the **Organization IDE (组织 IDE)**: a
 ## Sources & provenance
 Built from materials supplied by the user. Keep these on record (the reader may have access even if you don't):
 
-- **Mood board** — the original bundled HTML mood board provided by the user (decoded, image-stripped working copy at `moodboard_clean.html`). The authoritative source for color, type, form, motion, and motifs.
+- **Mood board** — the original bundled HTML mood board provided by the user was the authoritative source for color, type, form, motion, and motifs. The working copy has been removed from this repo; everything it informed now lives in `tokens/` and `guidelines/`.
 - **Logo** — `uploads/LOGO.png` → `assets/ezagent-logo.png`. Isometric tri-color cube (red / blue / yellow), De Stijl.
 - **GitHub** — `ezagent42/Design` (https://github.com/ezagent42/Design) was attached as the design repo but read as **empty** at build time. The broader Ezagent product context lives across the `ezagent42` org (e.g. `esr` — EZAgent Session Router, `autoservices`, `SaneLedger`, `monorepo`); explore those repos to design more faithfully against the real product. No product UI source was available, so the UI kits are original, faithful builds from these foundations.
 
@@ -108,13 +108,11 @@ Dark theme: set `data-theme="dark"` on `<html>`. Everything reads from CSS custo
 
 ---
 
-## Missing binary assets
+## Logo asset — TODO
 
-This repository was materialized from the Claude Design project. A few large binaries exceeded the 256 KiB transfer cap of the sync tool and are **not yet included** — re-add them from the original source:
+Every logo reference in this system points at a PNG: `assets/ezagent-logo.png` (light, **not yet committed** — it exceeded the sync transfer cap) and `assets/ezagent-logo-dark.png` (dark, **present**). The light mark is used in `guidelines/brand-logo*.html`, `slides/TitleSlide.html`, and both UI kits.
 
-- `assets/ezagent-logo.png` — the light-mode tri-color cube logo (referenced by the AppIcon guidelines and the UI kits). `assets/ezagent-logo-dark.png` **is** present.
-- `uploads/LOGO.png` — the original solid-white-background logo upload.
-- `uploads/拟像未来 × Forma 情绪板.html` — the original bundled mood board (the image-stripped working copy `moodboard_clean.html` **is** present).
+Preferred fix: drop in **vector** logos (`assets/ezagent-logo.svg` + a dark variant) and repoint the `<img>` references to them — no PNG needed. Until a vector or the light PNG is supplied, those previews show a broken image for the light mark.
 
 ---
 
