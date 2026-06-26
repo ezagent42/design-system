@@ -1,0 +1,48 @@
+<!-- @dsCard group="Slides" viewport="1280x720" name="Comparison slide" subtitle="Two-column A/B with color-coded cards" -->
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body{margin:0;width:1280px;height:720px;background:var(--ground);font-family:var(--font-ui);overflow:hidden;position:relative;}
+  .wrap{position:absolute;inset:48px;display:flex;flex-direction:column;gap:24px;}
+  .head{display:flex;align-items:baseline;gap:16px;padding:0 8px;}
+  .head h3{font-family:var(--font-cn);font-weight:600;font-size:42px;color:var(--ink);margin:0;letter-spacing:.01em;}
+  .head .sub{font-size:18px;color:var(--ink-2);}
+  .cols{flex:1;display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+  .col{background:var(--card);border-radius:var(--r-lg);box-shadow:var(--shadow-card);padding:40px 42px;display:flex;flex-direction:column;}
+  .tag{display:inline-flex;align-items:center;gap:9px;font-weight:600;font-size:15px;padding:8px 16px;border-radius:999px;align-self:flex-start;}
+  .tag.a{background:var(--ground-2);color:var(--ink-2);}
+  .tag.b{background:var(--blue-wash);color:var(--blue-deep);}
+  .tag .d{width:8px;height:8px;border-radius:999px;}
+  .tag.a .d{background:var(--ink-3);} .tag.b .d{background:var(--blue);}
+  .col h4{font-family:var(--font-cn);font-weight:600;font-size:30px;color:var(--ink);margin:22px 0 0;}
+  ul{list-style:none;padding:0;margin:22px 0 0;display:flex;flex-direction:column;gap:16px;}
+  li{display:flex;gap:13px;align-items:flex-start;font-size:18px;line-height:1.5;color:var(--ink-2);}
+  li .ic{width:24px;height:24px;border-radius:999px;flex:none;display:flex;align-items:center;justify-content:center;margin-top:1px;}
+  .a li .ic{background:var(--ground-2);color:var(--ink-3);}
+  .b li .ic{background:var(--jade);color:#fff;}
+  li .ic svg{width:14px;height:14px;}
+</style></head><body>
+<div class="wrap">
+  <div class="head"><h3>渐变 vs 纯色</h3><span class="sub">Gradients vs. solid color</span></div>
+  <div class="cols">
+    <div class="col">
+      <span class="tag a"><span class="d"></span>BEFORE · 别处</span>
+      <h4>渐变与噪声</h4>
+      <ul>
+        <li><span class="ic">✕</span>紫蓝渐变背景，方向不定</li>
+        <li><span class="ic">✕</span>彩色描边卡片，喧宾夺主</li>
+        <li><span class="ic">✕</span>层级靠线条，拥挤生硬</li>
+      </ul>
+    </div>
+    <div class="col">
+      <span class="tag b"><span class="d"></span>EZAGENT · 我们</span>
+      <h4>纯色与留白</h4>
+      <ul>
+        <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>三原色平涂，秩序与温度</li>
+        <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>白卡漂浮，柔影成边</li>
+        <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>钴蓝单一交互主色</li>
+      </ul>
+    </div>
+  </div>
+</div>
+</body></html>

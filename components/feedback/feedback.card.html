@@ -1,0 +1,47 @@
+<!-- @dsCard group="Components" viewport="700x300" name="Feedback · Dialog · Toast · Tooltip" subtitle="Modal, notification toasts, and hover tooltips" -->
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8">
+<link rel="stylesheet" href="../../styles.css">
+<style>
+  body{margin:0;background:var(--ground);padding:28px 30px;font-family:var(--font-ui);}
+  .lbl{font-family:var(--font-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);margin:0 0 14px;}
+  .row{display:flex;gap:14px;align-items:flex-start;flex-wrap:wrap;margin-bottom:24px;}
+  .row:last-child{margin-bottom:0;}
+</style>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
+<script src="../../_ds_bundle.js"></script>
+</head><body>
+<div id="root"></div>
+<script type="text/babel">
+  const { Dialog, Toast, Tooltip, Button, IconButton } = window.EzagentDesignSystem_b8e92c;
+  const { useState } = React;
+  function Demo(){
+    const [open,setOpen]=useState(false);
+    return (<>
+      <p className="lbl">Toast</p>
+      <div className="row">
+        <Toast tone="success" title="Deployed" onClose={()=>{}}>Agent is live at /research.</Toast>
+        <Toast tone="danger" title="Run failed">Tool timed out after 30s.</Toast>
+      </div>
+      <p className="lbl">Dialog · Tooltip</p>
+      <div className="row">
+        <Button variant="secondary" onClick={()=>setOpen(true)}>Open dialog</Button>
+        <Tooltip label="Run agent">
+          <IconButton variant="solid" label="Run"><i data-lucide="play"></i></IconButton>
+        </Tooltip>
+        <Tooltip label="Copy run ID" placement="bottom">
+          <Button variant="ghost" size="sm">#a91f3c</Button>
+        </Tooltip>
+      </div>
+      <Dialog open={open} onClose={()=>setOpen(false)} title="删除 Agent？"
+        footer={<><Button variant="ghost" onClick={()=>setOpen(false)}>取消</Button><Button variant="danger" onClick={()=>setOpen(false)}>删除</Button></>}>
+        This permanently removes the agent and its run history. This action can't be undone.
+      </Dialog>
+    </>);
+  }
+  ReactDOM.createRoot(document.getElementById('root')).render(<Demo/>);
+  setTimeout(()=>window.lucide && window.lucide.createIcons(), 60);
+</script>
+</body></html>

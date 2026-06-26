@@ -1,0 +1,28 @@
+<!-- @dsCard group="Slides" viewport="1280x720" name="Content slide" subtitle="Title + body + supporting stat cards" -->
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body{margin:0;width:1280px;height:720px;background:var(--ground);font-family:var(--font-ui);overflow:hidden;position:relative;}
+  .slide{position:absolute;inset:48px;background:var(--card);border-radius:var(--r-lg);box-shadow:var(--shadow-card);
+    padding:64px 72px;display:flex;flex-direction:column;}
+  .eyebrow{font-family:var(--font-mono);font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);display:flex;align-items:center;gap:10px;}
+  .eyebrow .d{width:8px;height:8px;border-radius:999px;background:var(--red);}
+  h3{font-family:var(--font-cn);font-weight:600;font-size:52px;line-height:1.16;color:var(--ink);margin:18px 0 0;letter-spacing:.01em;}
+  .lead{font-size:21px;line-height:1.6;color:var(--ink-2);margin:18px 0 0;max-width:52ch;font-weight:450;}
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:auto;}
+  .stat{background:var(--ground-2);border-radius:var(--r-md);box-shadow:var(--edge);padding:26px 24px;}
+  .stat .n{font-family:var(--font-ui);font-weight:800;font-size:46px;letter-spacing:-.02em;color:var(--ink);}
+  .stat .n.b{color:var(--blue);} .stat .n.j{color:var(--jade);} .stat .n.r{color:var(--red);}
+  .stat .l{font-size:15px;color:var(--ink-2);margin-top:8px;line-height:1.45;}
+</style></head><body>
+<div class="slide">
+  <div class="eyebrow"><span class="d"></span>原则 · Principles</div>
+  <h3>纯色与留白，<br>而非渐变与噪声。</h3>
+  <p class="lead">三原色取自 logo，作为品牌主轴；钴蓝担当唯一的交互主色。白卡漂浮在浅灰底上，边界靠光、不靠线。</p>
+  <div class="cards">
+    <div class="stat"><div class="n b">3+2</div><div class="l">主轴原色 + 两支蓝<br>Primaries + two blues</div></div>
+    <div class="stat"><div class="n j">0</div><div class="l">渐变<br>Gradients, ever</div></div>
+    <div class="stat"><div class="n r">60px</div><div class="l">招牌柔影层级<br>Signature soft shadow</div></div>
+  </div>
+</div>
+</body></html>

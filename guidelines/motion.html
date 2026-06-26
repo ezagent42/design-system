@@ -1,0 +1,16 @@
+<!-- @dsCard group="Effects" viewport="700x150" name="Motion · FadeUpBlur" subtitle="500ms easeOut · y20→0 · blur8→0 · plays once" -->
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body{margin:0;background:var(--card);padding:24px 26px;font-family:var(--font-ui);}
+  .mrow{display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:11px;color:var(--ink-2);border-bottom:1px solid var(--line);padding:9px 0;}
+  .mrow .n{font-family:var(--font-ui);font-weight:600;font-size:13px;color:var(--ink);}
+  .track{height:38px;border-radius:999px;background:var(--ground-2);box-shadow:var(--edge);position:relative;margin-top:14px;overflow:hidden;}
+  .puck{position:absolute;top:5px;left:5px;width:28px;height:28px;border-radius:999px;background:var(--blue);box-shadow:0 4px 10px -3px rgba(11,92,255,.6);animation:settle 2.8s var(--ease-out) infinite;}
+  @keyframes settle{0%{left:5px;filter:blur(5px);opacity:.2;}55%{left:calc(100% - 33px);filter:blur(0);opacity:1;}100%{left:calc(100% - 33px);}}
+  @media (prefers-reduced-motion:reduce){.puck{animation:none;left:calc(100% - 33px);}}
+</style></head><body>
+  <div class="mrow"><span class="n">FadeUpBlur · 入场</span><span>500ms · easeOut</span></div>
+  <div class="mrow"><span class="n">cubic-bezier</span><span>.16, 1, .3, 1</span></div>
+  <div class="track"><span class="puck"></span></div>
+</body></html>

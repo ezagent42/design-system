@@ -1,0 +1,119 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AppIcon · frost + 全变体 · 明暗</title>
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body{margin:0;background:var(--ground);font-family:var(--font-ui);padding:34px 32px 60px;transition:background .25s;}
+  .wrap{max-width:1000px;margin:0 auto;}
+  .top{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;}
+  h1{font-family:var(--font-cn);font-weight:600;font-size:29px;color:var(--ink);margin:0;letter-spacing:.01em;}
+  .lead{font-size:14.5px;color:var(--ink-2);margin:9px 0 0;max-width:66ch;line-height:1.6;}
+  .lead b{color:var(--ink);font-weight:600;}
+  .toggle{flex:none;display:inline-flex;background:var(--ground-2);border-radius:999px;padding:4px;gap:2px;box-shadow:var(--edge);}
+  .toggle button{border:0;background:transparent;cursor:pointer;font-family:var(--font-ui);font-weight:600;font-size:13px;color:var(--ink-2);padding:8px 16px;border-radius:999px;display:inline-flex;align-items:center;gap:7px;}
+  .toggle button.on{background:var(--card);color:var(--ink);box-shadow:var(--shadow-sm);}
+  .card{background:var(--card);border-radius:var(--r-lg);box-shadow:var(--shadow-card);padding:26px 28px;margin-top:24px;}
+  .blabel{font-family:var(--font-mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);margin:0 0 14px;}
+  .blabel.mt{margin-top:28px;}
+  .grid{display:grid;grid-template-columns:repeat(5,max-content);gap:22px;align-items:start;}
+  .cell{display:flex;flex-direction:column;align-items:center;gap:10px;}
+  .vname{font-family:var(--font-mono);font-size:11px;color:var(--ink-2);}
+  .vname.star{color:var(--accent);font-weight:700;}
+  .row2{display:flex;gap:12px;flex-wrap:wrap;align-items:center;}
+  .hdr{display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:var(--r-md);background:var(--card);box-shadow:var(--edge);}
+  .hdr .t{font-family:var(--font-cn);font-weight:600;font-size:16px;color:var(--ink);}
+  .hdr .slash{font-family:var(--font-mono);font-size:12px;color:var(--ink-3);}
+  .hdr img{height:22px;}
+  .stage{position:relative;border-radius:var(--r-md);overflow:hidden;padding:22px;display:flex;gap:14px;align-items:center;justify-content:center;background:#14131C;}
+  .stage .blob{position:absolute;border-radius:999px;filter:blur(6px);opacity:.72;}
+  .stage .ic{position:relative;z-index:2;}
+  .verdict{background:var(--card);border-radius:var(--r-lg);box-shadow:var(--shadow-card);padding:22px 26px;margin-top:20px;}
+  .verdict h3{font-family:var(--font-cn);font-weight:600;font-size:18px;color:var(--ink);margin:0 0 8px;}
+  .verdict p{font-size:13.5px;color:var(--ink-2);line-height:1.65;margin:0;}
+</style>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../_ds_bundle.js"></script>
+</head><body>
+<div id="root"></div>
+<script type="text/babel">
+  const { AppIcon, Badge } = window.EzagentDesignSystem_b8e92c;
+  const { useState, useEffect } = React;
+  const Tri  = () => <svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4l13 8-13 8z"/></svg>;
+  const Dot  = () => <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="9"/></svg>;
+  const Ring = () => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="4"><circle cx="12" cy="12" r="8"/></svg>;
+  const Sq   = () => <svg viewBox="0 0 24 24" fill="currentColor"><rect x="5" y="5" width="14" height="14" rx="3"/></svg>;
+  const Bars = () => <svg viewBox="0 0 24 24" fill="currentColor"><rect x="4" y="4" width="4" height="16" rx="2"/><rect x="10" y="4" width="4" height="16" rx="2" opacity=".55"/><rect x="16" y="4" width="4" height="16" rx="2"/></svg>;
+  const VARIANTS = ['solid','frost','soft','glass','bare'];
+
+  function App(){
+    const [dark,setDark] = useState(false);
+    useEffect(()=>{
+      const el = document.documentElement;
+      if(dark) el.setAttribute('data-theme','dark'); else el.removeAttribute('data-theme');
+    },[dark]);
+    return (
+      <div className="wrap">
+        <div className="top">
+          <div>
+            <h1>AppIcon · frost 变体 + 明暗调校</h1>
+            <p className="lead"><b>frost</b> = 饱和半透明磨砂色 + 白色字形 + 内高光与同色辉光：白底上像 solid 一样醒目，色块之上又有真实玻璃感。每个变体都做了<b>独立的暗色调校</b> —— 切换 ☾ 看：亮色提亮后字形从白翻成深墨，底色 / 高光重新调过。</p>
+          </div>
+          <div className="toggle">
+            <button className={!dark?'on':''} onClick={()=>setDark(false)}>☀ Light</button>
+            <button className={dark?'on':''} onClick={()=>setDark(true)}>☾ Dark</button>
+          </div>
+        </div>
+
+        <div className="card">
+          <p className="blabel">五种变体 · 同色对比（blue）</p>
+          <div className="grid">
+            {VARIANTS.map(v=>(
+              <div className="cell" key={v}>
+                <AppIcon color="blue" size="lg" variant={v} glyph={<Tri/>}/>
+                <span className={'vname'+(v==='frost'?' star':'')}>{v}</span>
+              </div>
+            ))}
+          </div>
+
+          <p className="blabel mt">frost · 调色板 palette</p>
+          <div className="row2">
+            <AppIcon color="blue" variant="frost" glyph={<Tri/>}/>
+            <AppIcon color="red" variant="frost" glyph={<Dot/>}/>
+            <AppIcon color="yellow" variant="frost" glyph={<Ring/>}/>
+            <AppIcon color="jade" variant="frost" glyph={<Sq/>}/>
+            <AppIcon color="orange" variant="frost" glyph={<Bars/>}/>
+            <AppIcon color="blueink" variant="frost" glyph={<Sq/>}/>
+          </div>
+
+          <p className="blabel mt">frost · 标题栏 header</p>
+          <div className="hdr">
+            <img src={dark ? '../assets/ezagent-logo-dark.png' : '../assets/ezagent-logo.png'} alt="Ezagent"/>
+            <span className="slash">/</span>
+            <AppIcon color="blue" size="sm" variant="frost" glyph={<Tri/>}/>
+            <span className="t">Research Agent</span>
+            <span style={{marginLeft:'auto'}}><Badge tone="neutral">Draft</Badge></span>
+          </div>
+
+          <p className="blabel mt">frost vs glass · 色块之上 over color</p>
+          <div className="stage">
+            <span className="blob" style={{width:84,height:84,background:'#D81830',left:40,top:-10}}></span>
+            <span className="blob" style={{width:72,height:72,background:'#FFD400',right:80,bottom:-18}}></span>
+            <span className="blob" style={{width:78,height:78,background:'#0FA06E',left:'46%',bottom:-22}}></span>
+            <span className="ic"><AppIcon color="blue" variant="frost" glyph={<Tri/>}/></span>
+            <span className="ic"><AppIcon color="orange" variant="frost" glyph={<Bars/>}/></span>
+            <span className="ic"><AppIcon color="blue" variant="glass" glyph={<Tri/>}/></span>
+          </div>
+        </div>
+
+        <div className="verdict">
+          <h3>建议</h3>
+          <p><b>frost</b> 兼顾醒目与柔美，适合做<b>头像 / 身份标识</b>主力（header、侧栏、卡片、色块舞台都成立）。暗色已单独调校：亮色提亮后字形翻深墨、内高光与辉光减弱以免在近黑底上过曝。要我把 <span className="ez-mono">AppIcon</span> 默认设为 <span className="ez-mono">frost</span> 并铺到两个 UI kit 吗？（需要纯净玻璃时仍可显式用 <span className="ez-mono">glass</span>。）</p>
+        </div>
+      </div>
+    );
+  }
+  ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+</script>
+</body></html>

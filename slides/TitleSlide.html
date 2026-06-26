@@ -1,0 +1,36 @@
+<!-- @dsCard group="Slides" viewport="1280x720" name="Title slide" subtitle="Hero — logo, CN serif title, 点彩 scatter" -->
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body{margin:0;width:1280px;height:720px;background:var(--ground);font-family:var(--font-ui);overflow:hidden;position:relative;}
+  .slide{position:absolute;inset:48px;background:var(--card);border-radius:var(--r-lg);box-shadow:var(--shadow-card);
+    padding:72px 80px;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;}
+  .kicker{display:inline-flex;align-items:center;gap:10px;font-weight:600;font-size:15px;letter-spacing:.04em;color:var(--blue);
+    background:var(--blue-wash);padding:9px 18px;border-radius:999px;align-self:flex-start;}
+  .kicker .d{width:8px;height:8px;border-radius:999px;background:var(--blue);}
+  h1{font-family:var(--font-cn);font-weight:600;font-size:80px;line-height:1.1;letter-spacing:.01em;color:var(--ink);margin:32px 0 0;}
+  h1 em{font-style:normal;color:var(--blue);}
+  .en{font-family:var(--font-ui);font-weight:800;letter-spacing:-.02em;font-size:40px;color:var(--ink-2);margin-top:18px;}
+  .foot{display:flex;align-items:center;justify-content:space-between;}
+  .brand{display:flex;align-items:center;gap:14px;}
+  .brand img{height:44px;}
+  .brand b{font-family:var(--font-ui);font-weight:800;font-size:22px;letter-spacing:-.02em;color:var(--ink);}
+  .mono{font-family:var(--font-mono);font-size:14px;color:var(--ink-3);text-align:right;line-height:1.7;}
+  .scatter{position:absolute;border-radius:999px;}
+</style></head><body>
+<div class="slide">
+  <span class="scatter" style="width:20px;height:20px;background:var(--red);right:11%;top:20%"></span>
+  <span class="scatter" style="width:14px;height:14px;background:var(--yellow);right:6%;top:38%"></span>
+  <span class="scatter" style="width:12px;height:12px;background:var(--jade);right:18%;top:14%"></span>
+  <span class="scatter" style="width:11px;height:11px;background:var(--blueink);right:9%;top:56%"></span>
+  <div>
+    <span class="kicker"><span class="d"></span>Organization IDE · 2026</span>
+    <h1>组织的 <em>IDE</em>。</h1>
+    <div class="en">Organization IDE.</div>
+  </div>
+  <div class="foot">
+    <div class="brand"><img src="../assets/ezagent-logo.png" alt="Ezagent"><b>EZAGENT</b></div>
+    <div class="mono">DESIGN SYSTEM<br>三原色为轴，柔软为形</div>
+  </div>
+</div>
+</body></html>

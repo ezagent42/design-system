@@ -1,0 +1,40 @@
+<!-- @dsCard group="Components" viewport="700x200" name="Navigation · Tabs" subtitle="Underline & pill tab bars with counts" -->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<link rel="stylesheet" href="../../styles.css">
+<style>
+  body{margin:0;background:var(--card);padding:28px 30px;font-family:var(--font-ui);}
+  .lbl{font-family:var(--font-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);margin:0 0 14px;}
+  .blk{margin-bottom:30px;}
+  .blk:last-child{margin-bottom:0;}
+</style>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+</head><body>
+<div id="root"></div>
+<script type="text/babel">
+  const { Tabs } = window.EzagentDesignSystem_b8e92c;
+  const { useState } = React;
+  function Demo(){
+    const [a,setA]=useState('runs');
+    const [b,setB]=useState('Overview');
+    return (<>
+      <div className="blk">
+        <p className="lbl">Underline</p>
+        <Tabs value={a} onChange={setA} items={[
+          {value:'agents',label:'Agents',count:8},
+          {value:'runs',label:'Runs',count:24},
+          {value:'logs',label:'Logs'},
+          {value:'settings',label:'Settings'},
+        ]} />
+      </div>
+      <div className="blk">
+        <p className="lbl">Pill</p>
+        <Tabs variant="pill" value={b} onChange={setB} items={['Overview','Tools','Memory','Deploy']} />
+      </div>
+    </>);
+  }
+  ReactDOM.createRoot(document.getElementById('root')).render(<Demo/>);
+</script>
+</body></html>

@@ -1,0 +1,22 @@
+<!-- @dsCard group="Colors" viewport="700x150" name="Neutrals · 灰阶" subtitle="Light-gray ground → ink. White cards float on the ground." -->
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body{margin:0;background:var(--card);padding:24px 26px;font-family:var(--font-ui);}
+  .ramp{display:flex;border-radius:var(--r-sm);overflow:hidden;box-shadow:var(--edge);}
+  .ramp i{flex:1;height:46px;}
+  .labels{display:flex;margin-top:10px;}
+  .labels span{flex:1;font-family:var(--font-mono);font-size:9.5px;color:var(--ink-3);text-align:center;letter-spacing:.01em;}
+  .note{font-size:13px;color:var(--ink-2);margin-top:14px;line-height:1.5;}
+  .note b{color:var(--ink);font-weight:600;}
+</style></head><body>
+  <div class="ramp">
+    <i style="background:#FFFFFF"></i><i style="background:#EFEFF1"></i><i style="background:#E8E8EB"></i>
+    <i style="background:#B6B6BC"></i><i style="background:#8A8A92"></i><i style="background:#56565E"></i><i style="background:#17171B"></i>
+  </div>
+  <div class="labels">
+    <span>card<br>FFFFFF</span><span>ground-2<br>EFEFF1</span><span>ground<br>E8E8EB</span>
+    <span>ink-4<br>B6B6BC</span><span>ink-3<br>8A8A92</span><span>ink-2<br>56565E</span><span>ink<br>17171B</span>
+  </div>
+  <div class="note"><b>白卡漂在浅灰底上</b> — boundaries come from light (shadow), not lines.</div>
+</body></html>

@@ -1,0 +1,39 @@
+# ── OS / editor junk ─────────────────────────────────────────
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+*.swp
+*.swo
+*~
+.idea/
+.vscode/
+*.code-workspace
+
+# ── Node / tooling (this DS ships static assets; nothing built here) ──
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.npm/
+.pnpm-store/
+dist/
+build/
+.cache/
+
+# ── design-sync local state (machine-specific sync anchors/config) ───
+.design-sync/
+.ds-sync/
+.ds-build-meta.json
+.render-check.json
+.sync-diff.json
+
+# ── misc / scratch ───────────────────────────────────────────
+*.b64
+*.log
+.env
+.env.local

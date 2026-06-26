@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<!-- @template name="Agent Landing" description="Ezagent marketing hero — kicker badge, CN serif headline, dual CTAs, 点彩 band" -->
+<helmet>
+<script src="./ds-base.js"></script>
+<style>
+  body{margin:0;background:#E8E8EB;}
+  :root[data-theme="dark"] body{background:#16151C;}
+</style>
+</helmet>
+<div style="min-height:100vh;display:flex;align-items:center;justify-content:center;padding:48px;font-family:'Inter',system-ui,sans-serif;">
+  <div style="width:100%;max-width:1080px;background:#FFFFFF;border-radius:22px;box-shadow:0 60px 80px rgba(15,15,15,.07),0 25px 33px rgba(15,15,15,.05),0 7.5px 10px rgba(15,15,15,.04),0 1.7px 2.2px rgba(15,15,15,.022);overflow:hidden;">
+    <div style="padding:72px 80px 40px;">
+      <x-import component-from-global-scope="EzagentDesignSystem_b8e92c.Badge" tone="info" dot="{{ true }}" hint-size="160px,32px">Organization IDE · 2026</x-import>
+      <h1 style="font-family:'Noto Serif SC',serif;font-weight:600;font-size:68px;line-height:1.12;letter-spacing:.01em;color:#17171B;margin:28px 0 0;">组织的 <span style="color:#0B5CFF;">IDE</span>。</h1>
+      <div style="font-family:'Inter',sans-serif;font-weight:800;font-size:32px;letter-spacing:-.02em;color:#56565E;margin-top:14px;">Organization IDE.</div>
+      <p style="font-size:19px;line-height:1.6;color:#56565E;max-width:54ch;margin:22px 0 0;font-weight:450;">Ezagent 让你用一套柔软而清晰的界面构建、运行并交付 AI agent。纯色为轴，留白为形 — build, run, and ship agents.</p>
+      <div style="display:flex;gap:14px;margin-top:36px;flex-wrap:wrap;">
+        <x-import component-from-global-scope="EzagentDesignSystem_b8e92c.Button" variant="primary" size="lg" hint-size="200px,52px">开始使用 · Get started →</x-import>
+        <x-import component-from-global-scope="EzagentDesignSystem_b8e92c.Button" variant="secondary" size="lg" hint-size="160px,52px">查看文档 · Docs</x-import>
+      </div>
+    </div>
+    <x-import component-from-global-scope="EzagentDesignSystem_b8e92c.ColorPoints" count="{{ 52 }}" height="{{ 150 }}" seed="{{ 4 }}" hint-size="100%,150px"></x-import>
+  </div>
+</div>
+
+</x-dc>
+</body>
+</html>

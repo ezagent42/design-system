@@ -1,0 +1,49 @@
+<!-- @dsCard group="Components" viewport="700x300" name="Data display · Badge · Tag · Avatar · Card" subtitle="Status labels, chips, avatars and the floating surface" -->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<link rel="stylesheet" href="../../styles.css">
+<style>
+  body{margin:0;background:var(--ground);padding:28px 30px;font-family:var(--font-ui);}
+  .lbl{font-family:var(--font-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);margin:0 0 12px;}
+  .row{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:22px;}
+  .ct{font-weight:700;font-size:15px;color:var(--ink);}
+  .cs{font-size:13px;color:var(--ink-2);margin-top:4px;}
+</style>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+</head><body>
+<div id="root"></div>
+<script type="text/babel">
+  const { Badge, Tag, Avatar, Card } = window.EzagentDesignSystem_b8e92c;
+  function Demo(){
+    return (<>
+      <p className="lbl">Badge</p>
+      <div className="row">
+        <Badge tone="info">New</Badge>
+        <Badge tone="success" dot>Live</Badge>
+        <Badge tone="danger">Alert</Badge>
+        <Badge tone="warning">Queued</Badge>
+        <Badge tone="neutral">Draft</Badge>
+        <Badge tone="info" solid>Pro</Badge>
+      </div>
+      <p className="lbl">Tag · Avatar</p>
+      <div className="row">
+        <Tag color="var(--jade)">production</Tag>
+        <Tag color="var(--blue)">research-agent</Tag>
+        <Tag onRemove={()=>{}}>removable</Tag>
+        <Avatar name="Allen Woods" />
+        <Avatar name="Mei Chen" />
+        <Avatar name="Research Agent" squircle />
+        <Avatar name="K" size="lg" />
+      </div>
+      <p className="lbl">Card · floating surface</p>
+      <Card interactive style={{maxWidth:280}}>
+        <div className="ct">Research Agent</div>
+        <div className="cs">Crawls sources and drafts a brief. Tap to open.</div>
+      </Card>
+    </>);
+  }
+  ReactDOM.createRoot(document.getElementById('root')).render(<Demo/>);
+</script>
+</body></html>

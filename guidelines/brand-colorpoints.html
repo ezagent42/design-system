@@ -1,0 +1,19 @@
+<!-- @dsCard group="Brand" viewport="700x170" name="Color points · 点彩" subtitle="Scattered solid primaries — the system's signature rhythm" -->
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body{margin:0;background:var(--card);padding:22px 24px;font-family:var(--font-ui);}
+  .canvas{position:relative;height:124px;border-radius:var(--r-md);background:var(--ground-2);box-shadow:var(--edge);overflow:hidden;}
+</style></head><body>
+  <div class="canvas" id="c"></div>
+  <script>
+    var lum=['#D81830','#0048A8','#FFD400','#0FA06E','#0B5CFF','#FF8A1E'];
+    var f=document.getElementById('c');
+    for(var i=0;i<32;i++){
+      var d=document.createElement('span');
+      var s=5+Math.random()*12, c=lum[(Math.random()*lum.length)|0];
+      d.style.cssText='position:absolute;border-radius:999px;left:'+(Math.random()*90+3)+'%;top:'+(Math.random()*80+6)+'%;width:'+s+'px;height:'+s+'px;background:'+c+';box-shadow:0 2px 7px -5px '+c+';opacity:'+(0.34+Math.random()*0.3).toFixed(2)+';';
+      f.appendChild(d);
+    }
+  </script>
+</body></html>
