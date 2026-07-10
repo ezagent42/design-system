@@ -1,0 +1,151 @@
+<!-- @dsCard group="Slides" viewport="1280x800" name="Deck viewer" subtitle="Sidebar page list + stage + PDF export — copy per deck, edit DECK array" -->
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8">
+<title>Deck Viewer</title>
+<link rel="stylesheet" href="../styles.css">
+<style>
+  :root{--rail:280px;}
+  body{margin:0;background:var(--ground);font-family:var(--font-ui);height:100vh;display:flex;overflow:hidden;}
+
+  /* ── left rail：页面列表 ─────────────────────────── */
+  .rail{width:var(--rail);flex:none;height:100%;display:flex;flex-direction:column;background:var(--card);box-shadow:var(--shadow-card);z-index:2;}
+  .rail-head{padding:20px 20px 14px;}
+  .rail-head h1{font-family:var(--font-cn);font-weight:600;font-size:18px;color:var(--ink);margin:0;line-height:1.35;}
+  .rail-head .sub{font-family:var(--font-mono);font-size:11px;color:var(--ink-3);letter-spacing:.08em;margin-top:6px;}
+  .export{margin:10px 20px 12px;display:flex;align-items:center;justify-content:center;gap:8px;background:var(--blue);color:#fff;
+    border:0;border-radius:999px;padding:10px 0;font-size:14px;font-weight:600;cursor:pointer;font-family:var(--font-ui);}
+  .export:hover{background:var(--blue-deep,#0048A8);}
+  .export svg{width:15px;height:15px;}
+  .pages{flex:1;overflow-y:auto;padding:4px 14px 20px;display:flex;flex-direction:column;gap:10px;}
+  .pg{display:flex;flex-direction:column;gap:6px;border-radius:12px;padding:8px;cursor:pointer;border:2px solid transparent;}
+  .pg:hover{background:var(--ground-2);}
+  .pg.on{border-color:var(--blue);background:var(--blue-wash);}
+  .pg .th{width:100%;aspect-ratio:16/9;border-radius:8px;overflow:hidden;position:relative;background:#fff;box-shadow:var(--edge);pointer-events:none;}
+  .pg .th iframe{width:1280px;height:720px;border:0;transform-origin:0 0;position:absolute;left:0;top:0;}
+  .pg .cap{display:flex;justify-content:space-between;align-items:baseline;gap:8px;}
+  .pg .cap b{font-size:12.5px;font-weight:600;color:var(--ink);line-height:1.3;}
+  .pg .cap span{font-family:var(--font-mono);font-size:10px;color:var(--ink-3);}
+
+  /* ── right stage：当前页 ─────────────────────────── */
+  .stage{flex:1;min-width:0;display:flex;flex-direction:column;height:100%;}
+  .stage-body{flex:1;min-height:0;overflow:hidden;display:flex;align-items:center;justify-content:center;padding:34px;}
+  .canvas{flex:none;position:relative;width:1280px;height:720px;transform-origin:center center;border-radius:18px;overflow:hidden;box-shadow:var(--shadow-card);background:#fff;}
+  .canvas iframe{width:1280px;height:720px;border:0;display:block;}
+  .stage-foot{display:flex;align-items:center;justify-content:center;gap:18px;padding:0 0 20px;}
+  .nav{display:flex;align-items:center;gap:10px;background:var(--card);border-radius:999px;padding:8px 14px;box-shadow:var(--edge);}
+  .nav button{border:0;background:var(--ground-2);width:30px;height:30px;border-radius:999px;cursor:pointer;color:var(--ink-2);font-size:15px;display:flex;align-items:center;justify-content:center;}
+  .nav button:hover{background:var(--blue);color:#fff;}
+  .nav .pos{font-family:var(--font-mono);font-size:12.5px;color:var(--ink-2);min-width:64px;text-align:center;}
+  .hint{font-family:var(--font-mono);font-size:11px;color:var(--ink-3);letter-spacing:.05em;}
+
+  /* ── print：整套 deck 逐页成 PDF ───────────────────── */
+  .printdeck{display:none;}
+  @page{size:1280px 720px;margin:0;}
+  @media print{
+    body{display:block;overflow:visible;height:auto;background:#fff;}
+    .rail,.stage{display:none!important;}
+    .printdeck{display:block;}
+    .printdeck .pp{width:1280px;height:720px;overflow:hidden;break-after:page;page-break-after:always;}
+    .printdeck .pp:last-child{break-after:auto;page-break-after:auto;}
+    .printdeck iframe{width:1280px;height:720px;border:0;display:block;}
+  }
+</style></head><body>
+
+<aside class="rail">
+  <div class="rail-head">
+    <h1 id="deckTitle">示例 Deck</h1>
+    <div class="sub" id="deckSub">EZAGENT · DESIGN SYSTEM</div>
+  </div>
+  <button class="export" id="btnPdf" title="导出 PDF（打印对话框中选择「另存为 PDF」）">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>
+    导出 PDF
+  </button>
+  <div class="pages" id="pages"></div>
+</aside>
+
+<main class="stage">
+  <div class="stage-body"><div class="canvas" id="canvas"><iframe id="cur"></iframe></div></div>
+  <div class="stage-foot">
+    <div class="nav">
+      <button id="prev" aria-label="上一页">←</button>
+      <span class="pos" id="pos">1 / 1</span>
+      <button id="next" aria-label="下一页">→</button>
+    </div>
+    <span class="hint">←/→ 翻页 · 导出 PDF 请在打印对话框选「另存为 PDF」，边距设「无」</span>
+  </div>
+</main>
+
+<div class="printdeck" id="printdeck"></div>
+
+<script>
+/* ── 每个 deck 只需要改这里 ─────────────────────────────
+   src 相对于本文件；title 显示在左栏。 */
+var DECK = {
+  title: '示例 Deck · Sample',
+  subtitle: 'EZAGENT · DESIGN SYSTEM',
+  pages: [
+    { src: 'TitleSlide.html',      title: '封面 Title' },
+    { src: 'SectionSlide.html',    title: '章节 Section' },
+    { src: 'ContentSlide.html',    title: '正文 Content' },
+    { src: 'ComparisonSlide.html', title: '对比 Comparison' },
+    { src: 'QuoteSlide.html',      title: '引用 Quote' }
+  ]
+};
+/* ──────────────────────────────────────────────────── */
+
+var cur=0, N=DECK.pages.length;
+document.getElementById('deckTitle').textContent=DECK.title;
+document.getElementById('deckSub').textContent=DECK.subtitle;
+
+var pagesEl=document.getElementById('pages');
+DECK.pages.forEach(function(p,i){
+  var d=document.createElement('div');d.className='pg';d.dataset.i=i;
+  d.innerHTML='<div class="th"><iframe src="'+p.src+'" loading="lazy" scrolling="no" tabindex="-1"></iframe></div>'+
+    '<div class="cap"><b>'+p.title+'</b><span>'+String(i+1).padStart(2,'0')+'</span></div>';
+  d.addEventListener('click',function(){go(i);});
+  pagesEl.appendChild(d);
+});
+
+function fitThumbs(){document.querySelectorAll('.pg .th').forEach(function(t){
+  t.querySelector('iframe').style.transform='scale('+(t.clientWidth/1280)+')';});}
+function fitStage(){
+  var b=document.querySelector('.stage-body');
+  var s=Math.min((b.clientWidth-68)/1280,(b.clientHeight-68)/720,1);
+  document.getElementById('canvas').style.transform='scale('+s+')';
+}
+function go(i){
+  cur=(i+N)%N;
+  document.getElementById('cur').src=DECK.pages[cur].src;
+  document.getElementById('pos').textContent=(cur+1)+' / '+N;
+  document.querySelectorAll('.pg').forEach(function(el,j){el.classList.toggle('on',j===cur);});
+  var on=document.querySelector('.pg.on');if(on)on.scrollIntoView({block:'nearest'});
+}
+document.getElementById('prev').addEventListener('click',function(){go(cur-1);});
+document.getElementById('next').addEventListener('click',function(){go(cur+1);});
+document.addEventListener('keydown',function(e){
+  if(e.key==='ArrowLeft'||e.key==='PageUp')go(cur-1);
+  if(e.key==='ArrowRight'||e.key==='PageDown'||e.key===' ')go(cur+1);
+});
+window.addEventListener('resize',function(){fitThumbs();fitStage();});
+
+/* PDF export: 填充打印容器 → 等全部页加载 → 调起打印 */
+document.getElementById('btnPdf').addEventListener('click',function(){
+  var pd=document.getElementById('printdeck');
+  if(!pd.childElementCount){
+    DECK.pages.forEach(function(p){
+      var w=document.createElement('div');w.className='pp';
+      w.innerHTML='<iframe src="'+p.src+'" scrolling="no"></iframe>';
+      pd.appendChild(w);
+    });
+  }
+  var frames=pd.querySelectorAll('iframe'),left=frames.length;
+  var fire=function(){setTimeout(function(){window.print();},350);};
+  frames.forEach(function(f){
+    if(f.contentDocument&&f.contentDocument.readyState==='complete'){if(--left===0)fire();}
+    else f.addEventListener('load',function(){if(--left===0)fire();});
+  });
+  if(left===0)fire();
+});
+
+go(0);setTimeout(function(){fitThumbs();fitStage();},80);window.addEventListener('load',function(){fitThumbs();fitStage();});
+</script>
+</body></html>
