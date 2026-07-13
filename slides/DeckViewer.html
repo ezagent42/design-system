@@ -38,12 +38,12 @@
   .hint{font-family:var(--font-mono);font-size:11px;color:var(--ink-3);letter-spacing:.05em;}
 
   /* ── print：整套 deck 逐页成 PDF ───────────────────── */
-  .printdeck{display:none;}
+  .printdeck{position:absolute;left:-20000px;top:0;width:1280px;}
   @page{size:1280px 720px;margin:0;}
   @media print{
     body{display:block;overflow:visible;height:auto;background:#fff;}
     .rail,.stage{display:none!important;}
-    .printdeck{display:block;}
+    .printdeck{position:static;left:0;display:block;}
     .printdeck .pp{width:1280px;height:720px;overflow:hidden;break-after:page;page-break-after:always;}
     .printdeck .pp:last-child{break-after:auto;page-break-after:auto;}
     .printdeck iframe{width:1280px;height:720px;border:0;display:block;}
@@ -138,7 +138,7 @@ document.getElementById('btnPdf').addEventListener('click',function(){
     });
   }
   var frames=pd.querySelectorAll('iframe'),left=frames.length;
-  var fire=function(){setTimeout(function(){window.print();},350);};
+  var fire=function(){setTimeout(function(){window.print();},1200);};
   frames.forEach(function(f){
     if(f.contentDocument&&f.contentDocument.readyState==='complete'){if(--left===0)fire();}
     else f.addEventListener('load',function(){if(--left===0)fire();});

@@ -1,0 +1,131 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-06-26T00:00:00Z",
+  "title": "Design System: Ezagent",
+  "extensions": {
+    "colorMeta": {
+      "vermilion": { "role": "primary", "displayName": "Vermilion 红", "canonical": "#D81830", "tonalRamp": ["#3d070e", "#6b0c19", "#990f24", "#b3122c", "#d81830", "#e8546a", "#f29aa8", "#fae0e3"] },
+      "ink-blue": { "role": "primary", "displayName": "Ink-Blue 墨蓝", "canonical": "#0048A8", "tonalRamp": ["#001026", "#00204d", "#003073", "#004099", "#0048a8", "#3a72c0", "#7da3d6", "#d4e0f0"] },
+      "signal-yellow": { "role": "primary", "displayName": "Signal-Yellow 黄", "canonical": "#FFD400", "tonalRamp": ["#4d4000", "#806b00", "#b39600", "#ccac00", "#ffd400", "#ffe04d", "#ffeb99", "#fff4cc"] },
+      "cobalt": { "role": "secondary", "displayName": "Cobalt 钴蓝 (the action color)", "canonical": "#0B5CFF", "tonalRamp": ["#04113a", "#07246b", "#0a3699", "#0d49cc", "#0b5cff", "#4d85ff", "#8fb0ff", "#d6e2ff"] },
+      "jade": { "role": "secondary", "displayName": "Jade 翠 (success)", "canonical": "#0FA06E", "tonalRamp": ["#052e20", "#07543a", "#0a7a52", "#0c8b5e", "#0fa06e", "#34c08e", "#74d6b0", "#dcf1e8"] },
+      "amber": { "role": "tertiary", "displayName": "Amber 暖橙 (warning)", "canonical": "#FF8A1E", "tonalRamp": ["#4d2900", "#80450e", "#b36115", "#d96e00", "#ff8a1e", "#ffab5c", "#ffcd99", "#ffebd6"] },
+      "ground": { "role": "neutral", "displayName": "Ground (app background)", "canonical": "#E8E8EB", "tonalRamp": ["#17171b", "#2e2e34", "#56565e", "#8a8a92", "#b6b6bc", "#e2e2e6", "#e8e8eb", "#ffffff"] },
+      "ink": { "role": "neutral", "displayName": "Ink (primary text)", "canonical": "#17171B", "tonalRamp": ["#17171b", "#2e2e34", "#56565e", "#8a8a92", "#b6b6bc", "#d2d2d6", "#e8e8eb", "#ffffff"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Latin hero / section heroes — heavy, tight Inter 800." },
+      "cn-display": { "displayName": "CN Display", "purpose": "Chinese hero headings — Noto Serif SC, serif, never sans." },
+      "headline": { "displayName": "Headline", "purpose": "Section headings — Inter 700." },
+      "title": { "displayName": "Title", "purpose": "Card titles, panel and dialog headers — Inter 600." },
+      "body": { "displayName": "Body", "purpose": "Prose and UI copy — Inter 450, capped 65–75ch." },
+      "label": { "displayName": "Label", "purpose": "Form labels, button text, list names — Inter 600, Sentence case." },
+      "mono": { "displayName": "Overline / Mono", "purpose": "Metadata, counts, run ids, kickers — Space Mono, UPPERCASE, 0.14em." }
+    },
+    "shadows": [
+      { "name": "edge", "value": "0 0 0 1px rgba(15,15,15,.04)", "purpose": "Lowest tier — 1px light hairline for flat cards, inputs, secondary buttons." },
+      { "name": "raised", "value": "0 1px 2px rgba(15,15,15,.04), 0 8px 24px -12px rgba(15,15,15,.14)", "purpose": "Raised cards, popovers, dropdowns." },
+      { "name": "floating", "value": "0 60px 80px rgba(15,15,15,.07), 0 25px 33px rgba(15,15,15,.05), 0 13.4px 17.9px rgba(15,15,15,.045), 0 7.5px 10px rgba(15,15,15,.04), 0 4px 5.3px rgba(15,15,15,.03), 0 1.7px 2.2px rgba(15,15,15,.022)", "purpose": "The signature 招牌柔影 — primary floating cards and hover states." },
+      { "name": "accent-glow", "value": "0 10px 24px -8px rgba(11,92,255,.5)", "purpose": "Cobalt glow under primary buttons — the only colored shadow." },
+      { "name": "frosted-pop", "value": "0 20px 40px -16px rgba(15,15,15,.2), inset 0 0 0 1px rgba(255,255,255,.65)", "purpose": "毛玻璃 frosted-glass controls floating over color or imagery." }
+    ],
+    "motion": [
+      { "name": "ease-out", "value": "cubic-bezier(.16,1,.3,1)", "purpose": "Default easing — lifts, reveals, state transitions." },
+      { "name": "ease-in-out", "value": "cubic-bezier(.65,0,.35,1)", "purpose": "Symmetric transitions (toggles, dialogs)." },
+      { "name": "dur-fast", "value": "150ms", "purpose": "Hover / press feedback." },
+      { "name": "dur-base", "value": "250ms", "purpose": "Most state transitions." },
+      { "name": "dur-enter", "value": "500ms", "purpose": "FadeUpBlur entrance — plays once, reduced-motion shows end state." }
+    ],
+    "breakpoints": [
+      { "name": "container-sm", "value": "760px" },
+      { "name": "container", "value": "1340px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The primary action. Cobalt pill with an accent glow that lifts on hover.",
+      "html": "<button class='ds-btn-primary'>开始使用 · Get started</button>",
+      "css": ".ds-btn-primary{font-family:Inter,system-ui,sans-serif;font-weight:600;font-size:15px;border:0;cursor:pointer;border-radius:999px;display:inline-flex;align-items:center;gap:9px;padding:13px 24px;background:#0B5CFF;color:#fff;box-shadow:0 10px 24px -8px rgba(11,92,255,.5);transition:transform .25s cubic-bezier(.16,1,.3,1),box-shadow .25s cubic-bezier(.16,1,.3,1),background .2s} .ds-btn-primary:hover{transform:translateY(-2px);background:#1466FF;box-shadow:0 16px 32px -8px rgba(11,92,255,.5)} .ds-btn-primary:active{transform:translateY(0) scale(.98)} .ds-btn-primary:focus-visible{outline:3px solid rgba(11,92,255,.45);outline-offset:2px}"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Neutral action. Sunken fill with a 1px light edge; lifts slightly on hover.",
+      "html": "<button class='ds-btn-secondary'>新建 Agent · New</button>",
+      "css": ".ds-btn-secondary{font-family:Inter,system-ui,sans-serif;font-weight:600;font-size:15px;border:0;cursor:pointer;border-radius:999px;display:inline-flex;align-items:center;gap:9px;padding:13px 24px;background:#EFEFF1;color:#17171B;box-shadow:0 0 0 1px rgba(15,15,15,.04);transition:transform .2s,background .2s} .ds-btn-secondary:hover{transform:translateY(-1px);background:#E4E4E8} .ds-btn-secondary:active{transform:translateY(0) scale(.98)} .ds-btn-secondary:focus-visible{outline:3px solid rgba(11,92,255,.45);outline-offset:2px}"
+    },
+    {
+      "name": "Text Input",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Pill field, sunken at rest, brightens to white with a cobalt ring on focus.",
+      "html": "<span class='ds-input'><input placeholder='给 Agent 发消息 · Message the agent…'></span>",
+      "css": ".ds-input{display:inline-flex;align-items:center;gap:10px;width:300px;background:#EFEFF1;box-shadow:0 0 0 1px rgba(15,15,15,.04);border-radius:999px;padding:12px 18px;transition:box-shadow .2s,background .2s} .ds-input input{all:unset;flex:1;min-width:0;font-family:Inter,system-ui,sans-serif;font-size:14px;color:#17171B} .ds-input input::placeholder{color:#8A8A92} .ds-input:focus-within{background:#fff;box-shadow:inset 0 0 0 1px #0B5CFF,0 0 0 3px rgba(11,92,255,.45)}"
+    },
+    {
+      "name": "Floating Card",
+      "kind": "card",
+      "refersTo": "card-floating",
+      "description": "The signature white surface floating on the gray ground via the six-layer soft shadow.",
+      "html": "<div class='ds-card'><h3>Research Agent</h3><p>crawls + drafts briefs · 给 Agent 发消息</p></div>",
+      "css": ".ds-card{background:#fff;border-radius:22px;padding:30px 32px;max-width:320px;font-family:Inter,system-ui,sans-serif;color:#17171B;box-shadow:0 60px 80px rgba(15,15,15,.07),0 25px 33px rgba(15,15,15,.05),0 13.4px 17.9px rgba(15,15,15,.045),0 7.5px 10px rgba(15,15,15,.04),0 4px 5.3px rgba(15,15,15,.03),0 1.7px 2.2px rgba(15,15,15,.022)} .ds-card h3{margin:0 0 6px;font-size:18px;font-weight:600} .ds-card p{margin:0;font-size:14px;line-height:1.55;color:#56565E}"
+    },
+    {
+      "name": "Status Badge",
+      "kind": "chip",
+      "refersTo": "badge-success",
+      "description": "Pill status chip — soft wash background with deepened text and an optional leading dot.",
+      "html": "<span class='ds-badge-success'><span class='ds-dot'></span>Live</span>",
+      "css": ".ds-badge-success{font-family:Inter,system-ui,sans-serif;font-weight:600;font-size:12px;line-height:1;padding:6px 12px;border-radius:999px;display:inline-flex;align-items:center;gap:6px;background:#DCF1E8;color:#0A7A52} .ds-badge-success .ds-dot{width:7px;height:7px;border-radius:999px;background:currentColor}"
+    },
+    {
+      "name": "App Icon (glass)",
+      "kind": "custom",
+      "refersTo": "appicon-glass",
+      "description": "Signature product icon — a geometric brand glyph in a same-color frosted squircle.",
+      "html": "<span class='ds-appicon'><svg viewBox='0 0 24 24' fill='currentColor'><path d='M7 4l13 8-13 8z'/></svg></span>",
+      "css": ".ds-appicon{position:relative;display:inline-flex;align-items:center;justify-content:center;width:54px;height:54px;border-radius:16px;color:#0B5CFF;background:color-mix(in srgb,#0B5CFF 15%,transparent);backdrop-filter:blur(10px) saturate(1.4);-webkit-backdrop-filter:blur(10px) saturate(1.4);box-shadow:inset 0 0 0 1px rgba(255,255,255,.7),0 6px 16px -9px rgba(15,15,15,.35)} .ds-appicon svg{width:52%;height:52%}"
+    }
+  ],
+  "narrative": {
+    "northStar": "柔软的构成主义 · Soft Constructivism",
+    "overview": "Take the rigor of De Stijl — the three primaries straight off the Ezagent cube logo, pure color as structure, no gradients — and soften the form until it floats. That tension is the whole system: disciplined color, gentle surface. Color blocks are flat and confident; the surfaces that carry them are white cards lifted off a calm light-gray ground by huge layered soft shadows. The grid is rigid; the edges are made of light. The system serves the Organization IDE (组织 IDE) — a workspace to build, run, and ship an organization's AI agents — so it disappears into the task: dense panels, consistent controls, a single action color, earned familiarity. It is bilingual at the core (中文 · English) and speaks in three voices of type: heavy tight Inter for Latin display, Noto Serif SC for Chinese headings, Space Mono for data.",
+    "keyCharacteristics": [
+      "De Stijl primaries (红 / 墨蓝 / 黄 + 翠) as the brand axis; one bright cobalt as the only interactive color.",
+      "Flat solid color over generous whitespace — never gradients, never grain.",
+      "White cards floating on a light-gray ground via a six-layer signature soft shadow.",
+      "Pills everywhere: buttons, inputs, badges, segmented controls.",
+      "Bilingual zh/en voice with the interpunct · as house grammar.",
+      "Full dark theme; WCAG AA contrast; reduced-motion respected."
+    ],
+    "rules": [
+      { "name": "The One-Voice Rule", "body": "Cobalt #0B5CFF is the only interactive color. If something is clickable, selectable, or focused, it is cobalt; if it is cobalt, it is interactive. Structural ink-blue is identity, never an affordance.", "section": "colors" },
+      { "name": "The No-Gradient Rule", "body": "纯色与留白，而非渐变与噪声 — pure color and whitespace, never gradients and noise. Every fill is a single flat color; no background-clip:text gradient headings.", "section": "colors" },
+      { "name": "The Wash Rule", "body": "Each strong color has a soft tint wash paired with a deepened text tone. Status surfaces are wash + deep-text, never full-saturation behind small text.", "section": "colors" },
+      { "name": "The CN-Serif Rule", "body": "Chinese headings are Noto Serif SC, not a sans. The serif carries the brand's warmth; Latin display stays heavy Inter.", "section": "typography" },
+      { "name": "The Mono-Metadata Rule", "body": "Numbers, units, code, run ids, overlines and kickers are Space Mono, lowercase units, terse. Never set body or labels in mono.", "section": "typography" },
+      { "name": "The Light-Edge Rule", "body": "Structure is carried by elevation and tint, not by 1px gray borders. Reach for edge/shadow before a border. Side-stripe borders are forbidden.", "section": "elevation" },
+      { "name": "The Lift-on-Hover Rule", "body": "Interactive surfaces lift: buttons translateY(-2px) and deepen their shadow, cards translateY(-3px) into the floating shadow, press settles to scale(.98). Calm at rest, buoyant on touch.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do float white cards on the #E8E8EB ground with the six-layer floating shadow; let elevation, not borders, carry structure.",
+      "Do spend cobalt #0B5CFF only on actions, focus, current selection, and state — the One-Voice Rule.",
+      "Do pair copy as 中文 · English with the interpunct ·; CN headings in Noto Serif SC, data in Space Mono.",
+      "Do use pills (999px) for buttons, inputs, badges, and segmented controls; lift on hover, settle to scale(.98) on press.",
+      "Do ship every interactive component with default / hover / focus-visible / active / disabled (and invalid for inputs).",
+      "Do hit WCAG AA (body ≥4.5:1, large ≥3:1, placeholders ≥4.5:1) and give every animation a prefers-reduced-motion end-state."
+    ],
+    "donts": [
+      "Don't use gradients or noise anywhere — 纯色与留白，而非渐变与噪声. No background-clip:text gradient headings.",
+      "Don't use emoji as personality or iconography; geometric brand glyphs and the cube logo carry it.",
+      "Don't build identical icon-and-heading card grids repeated endlessly, and never nest cards.",
+      "Don't use borders as the primary edge, and never a border-left/right > 1px colored side-stripe — use shadow and tint.",
+      "Don't wrap the app in full-bleed chrome; fixed sidebars and top bars are their own floating cards.",
+      "Don't put a white glyph on a light fill (yellow squircle → dark glyph), and don't reach for the cream/sand body, the hero-metric template, or tracked uppercase eyebrows on every section."
+    ]
+  }
+}
